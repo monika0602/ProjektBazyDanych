@@ -54,7 +54,7 @@
                         <li><a runat="server" href="~/GetFarm">Apteki</a></li>
                         <li><a runat="server" href="~/GetDrugs">Leki</a></li>
                         <li><a runat="server" href="~/CreateOrder">Załóż zamówienie</a></li>
-                        <li><a runat="server" href="~/AddContent">Dodaj dane</a></li>
+                        <li><a runat="server" href="~/AddContent">Dodaj/Usuń dane</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

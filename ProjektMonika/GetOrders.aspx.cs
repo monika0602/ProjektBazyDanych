@@ -25,8 +25,27 @@ namespace ProjektMonika
                 rdr = com1.ExecuteReader();
                 while (rdr.Read())
                 {
+                    var idZamowienia = rdr["id_zamowienia"];
                     finalString += "<hr/><h3 class='text-danger mt-4'> Zamówienie numer" + rdr["id_zamowienia"] + "</h3>";
-                    
+                    finalString += "<h3>Data zamowienia: " + rdr["data_zamowienia"] + "</h3>";
+                    finalString += "<h3>Klient: " + rdr["imie"] + " " + rdr["nazwisko"] + "</h3>";
+                    finalString += "<h3>Apteka: " + rdr["nazwa"] + "</h3>";
+                    SqlCommand com2 = new SqlCommand("GetAllDetils", con);
+                    SqlDataReader rdr2 = null;
+                    com2.CommandType = CommandType.StoredProcedure;
+                    com1.Parameters.Add(new SqlParameter("@idZamowienia", idZamowienia));
+                    rdr2 = com2.ExecuteReader();
+                    string innerString = null;
+                    while (rdr2.Read())
+                    {
+                        
+
+                        innerString += "<h4> Lek:" + rdr2["nazwa"] + ", Cena: " + rdr2["cena"] + " zł Ilość: " + rdr2["ilosc"] + "</h4>";
+
+                    }
+
+                    finalString += innerString;
+
                 }
 
                 orders.InnerHtml = finalString;
