@@ -38,6 +38,7 @@
         </asp:ScriptManager>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
+
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,7 +48,10 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">Strona główna</a>
                 </div>
+                 
                 <div class="navbar-collapse collapse">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <LoggedInTemplate>
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/GetUsers">Klienci</a></li>
                         <li><a runat="server" href="~/GetOrders">Zamówienia</a></li>
@@ -56,21 +60,22 @@
                         <li><a runat="server" href="~/CreateOrder">Załóż zamówienie</a></li>
                         <li><a runat="server" href="~/AddContent">Dodaj/Usuń dane</a></li>
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
+                  
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">Rejestracja</a></li>
+                                <li><a runat="server" href="~/Account/Login">Zaloguj się</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        
+                            
                     </asp:LoginView>
                 </div>
             </div>
@@ -80,7 +85,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Bazy Danych Monika Dąbrowska</p>
             </footer>
         </div>
     </form>
