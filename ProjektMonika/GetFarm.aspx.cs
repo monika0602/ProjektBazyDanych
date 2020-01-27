@@ -25,8 +25,7 @@ namespace ProjektMonika
                 rdr = com1.ExecuteReader();
                 while (rdr.Read())
                 {
-                    finalString += "<hr/><h3 class='text-danger mt-4'>" + rdr["nazwa"] + "</h3>";
-                    finalString += "<h4>Adres</h4>";
+                    finalString += "<hr/><h3 class='text-danger mt-4'>" + rdr["nazwa"] + "</h3>"; 
                     finalString += "<h4>" + rdr["ulica"] + "</h4>";
                     finalString += "<h4>" + rdr["miasto"] + "</h4>";
                     finalString += "<h4>" + rdr["kod_pocztowy"] + "</h4>";

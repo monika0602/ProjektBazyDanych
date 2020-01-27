@@ -25,27 +25,16 @@ namespace ProjektMonika
                 rdr = com1.ExecuteReader();
                 while (rdr.Read())
                 {
-                    var idZamowienia = rdr["id_zamowienia"];
-                    finalString += "<hr/><h3 class='text-danger mt-4'> Zamówienie numer" + rdr["id_zamowienia"] + "</h3>";
-                    finalString += "<h3>Data zamowienia: " + rdr["data_zamowienia"] + "</h3>";
-                    finalString += "<h3>Klient: " + rdr["imie"] + " " + rdr["nazwisko"] + "</h3>";
-                    finalString += "<h3>Apteka: " + rdr["nazwa"] + "</h3>";
-                    SqlCommand com2 = new SqlCommand("GetAllDetils", con);
-                    SqlDataReader rdr2 = null;
-                    com2.CommandType = CommandType.StoredProcedure;
-                    com1.Parameters.Add(new SqlParameter("@idZamowienia", idZamowienia));
-                    rdr2 = com2.ExecuteReader();
-                    string innerString = null;
-                    while (rdr2.Read())
-                    {
-                        
+                    finalString += "<div><hr/><h3 class='text-danger mt-4'>Zamówienie numer " + rdr["id_zamowienia"] + "</h3>";
 
-                        innerString += "<h4> Lek:" + rdr2["nazwa"] + ", Cena: " + rdr2["cena"] + " zł Ilość: " + rdr2["ilosc"] + "</h4>";
+                    finalString += "<h4 class='text-left'> <b>Imię i nazwisko: </b> " + rdr["imie"] + " " + rdr["nazwisko"] + "</h4>";
+                    finalString += "<h4 class='text-left'> <b>Nazwa apteki: </b> " + rdr["apteka"]  + "</h4>";
+                    finalString += "<h4 class='text-left'> <b>Nazwa leku: </b> " + rdr["lek"] + "</h4>";
 
-                    }
+                   finalString += "<h4 class='text-left'> <b>Łączna cena: </b> " + rdr["cena"] + " zł</h4>";
 
-                    finalString += innerString;
 
+                    finalString += "</div>";
                 }
 
                 orders.InnerHtml = finalString;
